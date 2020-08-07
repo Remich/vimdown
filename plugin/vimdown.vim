@@ -23,24 +23,24 @@ augroup vimdown
 		
 		" Transform Operator (Normal Mode)
 		if !hasmapto('<Plug>TransformOperatorNormal')
-			autocmd Filetype markdown nmap <buffer><leader>t	<Plug>TransformOperatorNormal
+			autocmd Filetype markdown nmap <buffer><leader>mt	<Plug>TransformOperatorNormal
 		endif
 		noremap <unique> <script> <Plug>TransformOperatorNormal		<SID>TransformNormal
 		noremap <SID>TransformNormal		:<c-u>set operatorfunc=vimdown#TransformPrompt<cr>g@
 		
 		" Transform Operator (Linewise)
 		if !hasmapto('<Plug>TransformOperatorLine')
-			autocmd Filetype markdown nmap <buffer><leader>T	<Plug>TransformOperatorLine
+			autocmd Filetype markdown nmap <buffer><leader>mT	<Plug>TransformOperatorLine
 		endif
 		noremap <unique> <script> <Plug>TransformOperatorLine		<SID>TransformLine
-		noremap <SID>TransformLine		:<c-u>set operatorfunc=vimdown#TransformPrompt('line')<cr>
+		noremap <SID>TransformLine		:<c-u>call vimdown#TransformPrompt('line')<cr>
 		
 		" Transform Operator (Visual Mode)
 		if !hasmapto('<Plug>TransformOperatorVisual')
-			autocmd Filetype markdown vmap <buffer><leader>t	<Plug>TransformOperatorVisual
+			autocmd Filetype markdown vmap <buffer><leader>mt	<Plug>TransformOperatorVisual
 		endif
 		noremap <unique> <script> <Plug>TransformOperatorVisual		<SID>TransformVisual
-		noremap <SID>TransformVisual		:<c-u>set operatorfunc=vimdown#TransformPrompt('visualmode()')<cr>
+		noremap <SID>TransformVisual		:<c-u>call vimdown#TransformPrompt('visualmode()')<cr>
 		
 		" call vimdown#Foobar()<cr>
 
