@@ -80,3 +80,28 @@ endfunction
 
 function! vimdown#TransformToCode()
 endfunction
+
+function! vimdown#AddFootnote()
+	let l:regsave = @z
+	
+	let l:name = trim(input("Enter name: "))
+	redraw
+	echom
+	if l:name ==# ""
+		echom "ERROR: Name can't be empty."
+	endif
+	
+	let @z = "[^".l:name."]"
+	execute 'normal! "zp'
+	let @z = @z.": "
+	execute "normal! Go\<esc>o\<esc>\"zp"
+
+	let @z = l:regsave
+endfunction
+
+function! vimdown#AddSource()
+	let l:regsave = @z
+	let @z = "**Source:** <".@*.">"
+	execute "normal! \"zp"
+	let @z = l:regsave
+endfunction
